@@ -1,1 +1,36 @@
-
+app:
+  version: @project.version@
+spring:
+  application:
+    name: api
+    description: Projeto de uma API para simular o Boletim Informativo Diário
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${DATASOURCE_URL:Bid_HOST}
+    username: ${DATASOURCE_USERNAME:Bid_APPL}
+    password: ${DATASOURCE_PASSWORD:Bid_APPL}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+    error:
+      include-message: always
+management:
+  server:
+    port: 9090
+  endpoint:
+    health:
+      show-details: always
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
